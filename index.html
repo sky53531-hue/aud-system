@@ -912,6 +912,9 @@ _nav.addEventListener('touchend',function(){_nd=false;_nh=false;},{passive:true}
 // ── Service Worker ──
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js');
+  navigator.serviceWorker.addEventListener('controllerchange', function() {
+    window.location.reload();
+  });
 }
 
 // ── Init ──
