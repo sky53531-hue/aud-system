@@ -438,7 +438,7 @@ var BASE    = 'https://api.twelvedata.com';
 
 // ── State ──
 var mktData = null;
-var cdSec   = 60;
+var cdSec   = 120;
 var cdTimer = null;
 var editId  = null;
 var clState = {};
@@ -667,7 +667,8 @@ function startCountdown() {
   if (cdTimer) clearInterval(cdTimer);
   cdTimer = setInterval(function() {
     cdSec--;
-    document.getElementById('cd-txt').textContent = '下次更新：' + cdSec + 's';
+    var m = Math.floor(cdSec / 60), s = cdSec % 60;
+    document.getElementById('cd-txt').textContent = '下次更新：' + (m > 0 ? m + 'm ' : '') + s + 's';
     if (cdSec <= 0) doFetch();
   }, 1000);
 }
